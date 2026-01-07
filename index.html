@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advonit Technologies | Advocket - Legal Intelligence Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" type="image/png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Logo Image */
+        .logo-image {
+            height: 42px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #93c5fd;
+            font-weight: 400;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about {
+            background: #0f172a;
+            color: white;
+        }
+
+        .about .section-title {
+            color: white;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 5%;
+        }
+
+        .footer-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .address-info {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .address-info strong {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-value {
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .email-link {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .logo-main {
+                font-size: 1.4rem;
+            }
+            .logo-subtitle {
+                font-size: 0.65rem;
+            }
+            .logo-image {
+                height: 35px;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .footer-section {
+                min-width: 100%;
+            }
+            .section {
+                padding: 4rem 5%;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo-container">
+            <!-- Logo Image - If you have logo.png in assets folder -->
+            <img src="./assets/icon.png" alt="AdvonIT Logo" class="logo-image">
+            <div class="logo-text">
+                <div class="logo-main">AdvonIT</div>
+                <div class="logo-subtitle">Advanced IT Technologies</div>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AdvonIT</h1>
+            <p class="subtitle">Advanced IT Technologies</p>
+            <p class="tagline">Next-Generation Legal Intelligence Platform</p>
+            <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Empowering legal professionals with AI-driven insights, seamless case management, and intelligent document analysis
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <h2 class="section-title">Powerful Features for Modern Legal Practice</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>AI-Powered Research</h3>
+                <p>Leverage advanced artificial intelligence to conduct comprehensive legal research in seconds, accessing millions of cases, statutes, and precedents with unprecedented accuracy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Smart Document Analysis</h3>
+                <p>Automatically extract key information, identify risks, and generate summaries from complex legal documents, saving hours of manual review time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Case Management</h3>
+                <p>Manage your entire caseload with enterprise-grade security, real-time collaboration tools, and intuitive workflows designed specifically for legal teams.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics & Insights</h3>
+                <p>Gain actionable insights from your legal data with powerful analytics, predictive modeling, and customizable reporting dashboards.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Client Portal</h3>
+                <p>Enhance client relationships with a secure, branded portal for seamless communication, document sharing, and case updates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Workflow Automation</h3>
+                <p>Automate repetitive tasks, deadline tracking, and document generation to focus more time on strategic legal work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <h2 class="section-title">About Advonit Technologies</h2>
+        <div class="about-content">
+            <p>
+                At Advonit Technologies, we're revolutionizing the legal industry through innovative technology solutions. Our flagship product, Advocket, combines cutting-edge artificial intelligence with deep legal expertise to create a platform that empowers lawyers, paralegals, and legal teams to work smarter, faster, and more effectively.
+            </p>
+            <p>
+                Founded by a team of legal professionals and technologists, we understand the unique challenges facing modern legal practice. Advocket is built from the ground up to address these challenges, providing tools that enhance productivity while maintaining the highest standards of accuracy and security.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-main">
+            <div class="footer-content">
+                <!-- Left Side: Address -->
+                <div class="footer-section">
+                    <div class="footer-title">Corporate Office</div>
+                    <div class="address-info">
+                        <strong>ADVONIT TECHNOLOGIES PRIVATE LIMITED</strong>
+                        KONNULLI PARAMBU, KOMBARA<br>
+                        TATAPURAM PO, HIGH COURT<br>
+                        ERNAKULAM<br>
+                        ERNAKULAM NORTH<br>
+                        ERNAKULAM-682018<br>
+                        KERALA
+                    </div>
+                </div>
+
+                <!-- Right Side: Contact Information -->
+                <div class="footer-section">
+                    <div class="footer-title">Contact Information</div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-label">Phone Number</div>
+                            <div class="contact-value">011-9388056654</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">Email Address</div>
+                            <div class="contact-value">
+                                <a href="mailto:info@advocket.com" class="email-link">info@advocket.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">Business Hours</div>
+                            <div class="contact-value">Monday - Friday: 9:00 AM - 6:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Advonit Technologies. All rights reserved. | Empowering Legal Excellence</p>
+                <p style="margin-top: 0.5rem;">Advocket - Legal Intelligence Platform</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
